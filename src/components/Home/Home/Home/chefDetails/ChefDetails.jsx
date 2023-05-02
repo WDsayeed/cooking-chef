@@ -5,7 +5,7 @@ import Recipe from "../recipe/Recipe";
 const ChefDetails = () => {
   const details = useLoaderData();
   const recipes = details.recipes;
-  const { bio, name, img_url, experience, num_recipes, likes} = details;
+  const { bio, name, img_url, experience, num_recipes, likes, rating} = details;
   // const {id} = useParams()
   // console.log(id)
   // const [details, setDetails] = useState([])
@@ -35,11 +35,19 @@ const ChefDetails = () => {
         <p className="my-3 h-0"><span className="font-medium">Bio:</span> {bio}</p>
       </div>
     </div>
-    {
+    <h1 className="text-4xl font-semibold text-center mt-10 mb-2">
+        Our Chef's Recipes
+      </h1>
+      <div className="bg-purple-700 w-96 h-[2px] mx-auto mb-12"></div>
+   <div className="md:grid grid-cols-3 gap-20 mx-auto md:container">
+    
+   {
       recipes.map(recipe=> <Recipe
-   
+      recipe={recipe}
+      rating={rating}
       ></Recipe>)
     }
+   </div>
     </>
   );
 };

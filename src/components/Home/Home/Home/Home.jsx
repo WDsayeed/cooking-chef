@@ -1,15 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Chef from "./chef";
 import headerPhoto from '../../../../assets/12ac606896dfc98f4806b7acababed67.jpg'
+import { AuthContext } from "../../../providers/AuthProvider";
 
 
 const Home = () => {
+  const {loading} = useContext(AuthContext)
   const [chefs, setChefs] = useState([]);
 
   useEffect(() => {
     fetch("http://localhost:5000/chef")
       .then((res) => res.json())
-      .then((data) => setChefs(data))
+      .then((data) => {
+        if(loading){
+          return <div>loading....</div>
+        }
+        setChefs(data)
+      })
       .catch((error) => console.log(error));
   }, []);
   return <>

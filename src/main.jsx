@@ -10,6 +10,8 @@ import Register from "./components/Login/register/Register.jsx";
 import AuthProvider from "./components/providers/AuthProvider.jsx";
 import ChefDetails from "./components/Home/Home/Home/chefDetails/ChefDetails.jsx";
 import Errorpage from "./components/ErrorPage/Errorpage.jsx";
+import Blog from "./components/Blog/Blog.jsx";
+import PrivateRoute from "./components/privateRoute/PrivateRoute.jsx";
 
 const router = createBrowserRouter([
   {
@@ -23,8 +25,12 @@ const router = createBrowserRouter([
       },
       {
         path:"/details/:id",
-        element:<ChefDetails></ChefDetails>,
+        element:<PrivateRoute><ChefDetails></ChefDetails></PrivateRoute>,
         loader: ({params})=> fetch(`http://localhost:5000/chef/${params.id}`)
+      },
+      {
+        path:'blog',
+        element:<Blog></Blog>
       },
       {
         path: "login",

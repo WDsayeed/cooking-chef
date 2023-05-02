@@ -1,48 +1,51 @@
 import React, { useContext } from "react";
-import { Form, Link } from "react-router-dom";
+import { Form, Link, useLocation, useNavigate } from "react-router-dom";
 import { FaGoogle, FaGithub } from "react-icons/fa";
 import { AuthContext } from "../../providers/AuthProvider";
 
 const Login = () => {
+  const { signIn, googleSignIn, githubSignIn } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation()
 
-  const {signIn, googleSignIn,githubSignIn} = useContext(AuthContext)
-
-  const handleLogin = event=>{
-    event.preventDefault()
-    const form = event.target 
-    const email = form.email.value 
-    const password = form.password.value 
-    console.log(email, password)
+  const from = location.state?.from?.pathname || '/details/'
+  const handleLogin = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log(email, password);
     signIn(email, password)
-    .then(result=>{
-      const loggedUser = result.user 
-      console.log(loggedUser)
-    })
-    .catch(error=>{
-      console.log(error)
-    })
-  }
-  
-  const handleGoogleSignIn = ()=>{
+      .then((result) => {
+        const loggedUser = result.user;
+        console.log(loggedUser);
+        navigate(from, {replace: true});
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const handleGoogleSignIn = () => {
     googleSignIn()
-    .then(result=>{
-      const user = result.user 
-      console.log(user)
-    })
-    .catch(error=>{
-      console.log(error)
-    })
-  }
-  const handleGithubSignIn =()=>{
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+  const handleGithubSignIn = () => {
     githubSignIn()
-    .then(result=>{
-      const user = result.user 
-      console.log(user)
-    })
-    .catch(error=>{
-      console.log(error)
-    })
-  }
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   return (
     <>
       <h2 className="text-center mt-16 mb-8 text-4xl">Please Login</h2>
@@ -78,13 +81,19 @@ const Login = () => {
                 </button>
               </div>
               <div className="form-control mt-3">
-                <button onClick={handleGoogleSignIn} className="flex items-center justify-center gap-3 h-12 rounded text-white bg-purple-600">
+                <button
+                  onClick={handleGoogleSignIn}
+                  className="flex items-center justify-center gap-3 h-12 rounded text-white bg-purple-600"
+                >
                   <FaGoogle className="h-7 w-5"></FaGoogle>
                   Google Sign-in
                 </button>
               </div>
               <div className="form-control mt-3">
-                <button onClick={handleGithubSignIn} className="flex items-center justify-center gap-3 h-12 rounded text-white bg-purple-600">
+                <button
+                  onClick={handleGithubSignIn}
+                  className="flex items-center justify-center gap-3 h-12 rounded text-white bg-purple-600"
+                >
                   <FaGithub className="h-7 w-5"></FaGithub>
                   GitHub Sign-in
                 </button>
