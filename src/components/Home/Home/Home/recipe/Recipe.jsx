@@ -1,7 +1,6 @@
 import React from 'react';
 
-const Details = ({detail}) => {
-        console.log(detail)
+const Recipe = () => {
         return (
                 <div>
                         
@@ -9,4 +8,4 @@ const Details = ({detail}) => {
         );
 };
 
-export default Details;
+export default Recipe;

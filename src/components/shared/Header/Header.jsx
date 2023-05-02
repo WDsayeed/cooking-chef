@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
-    <div>
-      <div className="navbar bg-base-100 md:container md:mx-auto">
+    <div className="bg-purple-100">
+      <div className="navbar md:container md:mx-auto">
       <div className="flex-1">
         <a className="btn btn-ghost normal-case text-4xl">Cooking<span className="text-purple-700">Master</span></a>
       </div>
