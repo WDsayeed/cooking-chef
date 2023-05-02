@@ -1,11 +1,31 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext } from "react";
+import { Form, Link } from "react-router-dom";
+import { AuthContext } from "../../providers/AuthProvider";
 
 const Register = () => {
+  const {createUser} = useContext(AuthContext)
+
+  const handleRegister = event=>{
+    event.preventDefault()
+    const form = event.target 
+    const name = form.name.value 
+    const email = form.email.value 
+    const photo = form.photo.value
+    const password = form.password.value 
+    console.log(name, email, password, photo)
+    createUser(email, password)
+    .then(result=>{
+      const createdUser = result.user 
+      console.log(createdUser)
+    })
+    .catch(error=>{
+      console.log(error)
+    })
+  }
   return (
     <>
       <h2 className="text-center mt-16 mb-8 text-4xl">Please Register</h2>
-      <div className="hero mb-20 bg-base-200">
+      <Form className="hero mb-20 bg-base-200" onSubmit={handleRegister}>
         <div className="hero-content w-2/4 flex-col lg:flex-row-reverse">
           <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
             <div className="card-body">
@@ -18,6 +38,7 @@ const Register = () => {
                   placeholder="name"
                   name="name"
                   className="input input-bordered"
+                  required
                 />
               </div>
               <div className="form-control">
@@ -29,6 +50,7 @@ const Register = () => {
                   placeholder="email"
                   name="email"
                   className="input input-bordered"
+                  required
                 />
               </div>
               <div className="form-control">
@@ -38,8 +60,9 @@ const Register = () => {
                 <input
                   type="text"
                   placeholder="url"
-                  name="Photo"
+                  name="photo"
                   className="input input-bordered"
+                  required
                 />
               </div>
               <div className="form-control">
@@ -51,6 +74,7 @@ const Register = () => {
                   placeholder="password"
                   name="password"
                   className="input input-bordered"
+                  required
                 /> 
               </div>
               <div className="form-control mt-6">
@@ -65,7 +89,7 @@ const Register = () => {
             </div>
           </div>
         </div>
-      </div>
+      </Form>
     </>
   );
 };
