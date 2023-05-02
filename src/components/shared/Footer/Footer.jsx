@@ -4,7 +4,7 @@ import logo from '../../../assets/barbecue-chef-scalable-vector-graphics-hat-png
 
 const Footer = () => {
   return (
-    <footer className="footer p-10 bg-purple-100 text-base-content md:container md:mx-auto">
+    <footer className="footer p-10 bg-purple-100 text-base-content md:mx-auto">
       <div>
         <div className="flex items-center gap-3">
         <img className="w-20 rounded-xl h-14" src={logo} alt="" />
