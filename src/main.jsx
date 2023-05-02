@@ -8,15 +8,23 @@ import Home from "./components/Home/Home/Home/Home.jsx";
 import Login from "./components/Login/Login/Login.jsx";
 import Register from "./components/Login/register/Register.jsx";
 import AuthProvider from "./components/providers/AuthProvider.jsx";
+import ChefDetails from "./components/Home/Home/Home/chefDetails/ChefDetails.jsx";
+import Errorpage from "./components/ErrorPage/Errorpage.jsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
+    errorElement:<Errorpage></Errorpage>,
     children: [
       {
         path: "/",
         element: <Home></Home>,
+      },
+      {
+        path:"/details/:id",
+        element:<ChefDetails></ChefDetails>,
+        loader: ({params})=> fetch(`http://localhost:5173/details/${params.id}`)
       },
       {
         path: "login",

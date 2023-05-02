@@ -5,7 +5,8 @@ import { AuthContext } from "../../providers/AuthProvider";
 
 const Login = () => {
 
-  const {signIn} = useContext(AuthContext)
+  const {signIn, googleSignIn,githubSignIn} = useContext(AuthContext)
+
   const handleLogin = event=>{
     event.preventDefault()
     const form = event.target 
@@ -16,6 +17,27 @@ const Login = () => {
     .then(result=>{
       const loggedUser = result.user 
       console.log(loggedUser)
+    })
+    .catch(error=>{
+      console.log(error)
+    })
+  }
+  
+  const handleGoogleSignIn = ()=>{
+    googleSignIn()
+    .then(result=>{
+      const user = result.user 
+      console.log(user)
+    })
+    .catch(error=>{
+      console.log(error)
+    })
+  }
+  const handleGithubSignIn =()=>{
+    githubSignIn()
+    .then(result=>{
+      const user = result.user 
+      console.log(user)
     })
     .catch(error=>{
       console.log(error)
@@ -56,13 +78,13 @@ const Login = () => {
                 </button>
               </div>
               <div className="form-control mt-3">
-                <button className="flex items-center justify-center gap-3 h-12 rounded text-white bg-purple-600">
+                <button onClick={handleGoogleSignIn} className="flex items-center justify-center gap-3 h-12 rounded text-white bg-purple-600">
                   <FaGoogle className="h-7 w-5"></FaGoogle>
                   Google Sign-in
                 </button>
               </div>
               <div className="form-control mt-3">
-                <button className="flex items-center justify-center gap-3 h-12 rounded text-white bg-purple-600">
+                <button onClick={handleGithubSignIn} className="flex items-center justify-center gap-3 h-12 rounded text-white bg-purple-600">
                   <FaGithub className="h-7 w-5"></FaGithub>
                   GitHub Sign-in
                 </button>
