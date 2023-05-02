@@ -10,7 +10,7 @@ const Home = () => {
       .then((data) => setChefs(data))
       .catch((error) => console.log(error));
   }, []);
-  return <div className="md:container mx-auto items-center justify-center grid grid-cols-3 gap-10">
+  return <div className="md:container mx-auto items-center justify-center grid grid-cols-3 gap-10 my-24">
         {
                 chefs.map(chef => <Chef
                 key={chef.id}
