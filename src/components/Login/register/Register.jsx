@@ -1,9 +1,24 @@
 import React, { useContext } from "react";
 import { Form, Link } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
+import { FaGoogle, FaGithub } from "react-icons/fa";
+import { getAuth, updateProfile } from "firebase/auth";
+import app from "../../../firebase/firebase.config";
 
+const auth = getAuth(app)
 const Register = () => {
-  const {createUser} = useContext(AuthContext)
+  const {createUser,googleSignIn} = useContext(AuthContext)
+
+  const handleGoogleSignIn = () => {
+    googleSignIn()
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   const handleRegister = event=>{
     event.preventDefault()
@@ -16,12 +31,35 @@ const Register = () => {
     createUser(email, password)
     .then(result=>{
       const createdUser = result.user 
+      if(createUser){
+        updateProfile(createUser, {
+          displayName:name,
+          photoURL: photo
+        })
+        .then(()=>{
+          console.log('profile update')
+        })
+        .catch(()=>{
+          console.log(error)
+        })
+      }
       console.log(createdUser)
     })
     .catch(error=>{
       console.log(error)
     })
   }
+
+  const handleGithubSignIn = () => {
+    githubSignIn()
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   return (
     <>
       <h2 className="text-center mt-16 mb-8 text-4xl">Please Register</h2>
@@ -62,7 +100,7 @@ const Register = () => {
                   placeholder="url"
                   name="photo"
                   className="input input-bordered"
-                  required
+                  
                 />
               </div>
               <div className="form-control">
@@ -79,6 +117,24 @@ const Register = () => {
               </div>
               <div className="form-control mt-6">
                 <button className=" h-12 rounded text-white bg-purple-600">Register</button>
+              </div>
+              <div className="form-control mt-3">
+                <button
+                  onClick={handleGoogleSignIn}
+                  className="flex items-center justify-center gap-3 h-12 rounded text-white bg-purple-600"
+                >
+                  <FaGoogle className="h-7 w-5"></FaGoogle>
+                  Google Sign-in
+                </button>
+              </div>
+              <div className="form-control mt-3">
+                <button
+                  onClick={handleGithubSignIn}
+                  className="flex items-center justify-center gap-3 h-12 rounded text-white bg-purple-600"
+                >
+                  <FaGithub className="h-7 w-5"></FaGithub>
+                  GitHub Sign-in
+                </button>
               </div>
               <p>
                 Already have an account?{" "}

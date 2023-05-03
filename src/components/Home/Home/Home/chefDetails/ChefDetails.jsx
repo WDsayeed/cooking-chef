@@ -24,7 +24,7 @@ const ChefDetails = () => {
         <img 
         className="w-80 object-cover"
           src={img_url}
-          alt="Album"
+          alt=""
         />
       </figure>
       <div className="card-body">
@@ -39,7 +39,7 @@ const ChefDetails = () => {
         Our Chef's Recipes
       </h1>
       <div className="bg-purple-700 w-96 h-[2px] mx-auto mb-12"></div>
-   <div className="md:grid grid-cols-3 gap-20 mx-auto md:container">
+   <div className="grid md:grid-cols-3 gap-20 mx-auto md:container">
     
    {
       recipes.map(recipe=> <Recipe

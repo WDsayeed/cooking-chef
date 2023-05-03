@@ -1,28 +1,48 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Form, Link, useLocation, useNavigate } from "react-router-dom";
 import { FaGoogle, FaGithub } from "react-icons/fa";
 import { AuthContext } from "../../providers/AuthProvider";
+import { toast } from "react-hot-toast";
 
 const Login = () => {
   const { signIn, googleSignIn, githubSignIn } = useContext(AuthContext);
+  const [error, setError] = useState('')
+  const [emailError, setEmailError] = useState('')
+  const [errorPassword, setErrorPassword] = useState('')
+  const [user, setUser] = useState(null)
   const navigate = useNavigate();
   const location = useLocation()
 
-  const from = location.state?.from?.pathname || '/details/'
+  const from = location.state?.from?.pathname || '/'
   const handleLogin = (event) => {
     event.preventDefault();
     const form = event.target;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(email, password);
+    // console.log(email, password);
+    console.log(emailError)
+    if(emailError){
+      // setErrorEmail('Email does not match')
+     return toast.error('Email does not match')
+    }
+   else if(errorPassword){
+      // setError('Password does not match')
+      return toast.error('Password does not match')
+    }
+    if(password.length < 6){
+      setErrorPassword('Password should be 6 character')
+    }
     signIn(email, password)
       .then((result) => {
         const loggedUser = result.user;
-        console.log(loggedUser);
+        console.log(loggedUser)
         navigate(from, {replace: true});
+        form.reset()
       })
       .catch((error) => {
-        console.log(error);
+        setEmailError(error.message)
+        setErrorPassword(error.message)
+        console.log(error.message);
       });
   };
 
@@ -30,6 +50,7 @@ const Login = () => {
     googleSignIn()
       .then((result) => {
         const user = result.user;
+        setUser(user)
         console.log(user);
       })
       .catch((error) => {
@@ -64,6 +85,7 @@ const Login = () => {
                   className="input input-bordered"
                 />
               </div>
+              {/* <p className="text-red-600">{errorEmail}</p> */}
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Password</span>
@@ -75,6 +97,7 @@ const Login = () => {
                   className="input input-bordered"
                 />
               </div>
+              <p className="text-red-500">{error}</p>
               <div className="form-control mt-6">
                 <button className=" h-12 rounded text-white bg-purple-600">
                   Login

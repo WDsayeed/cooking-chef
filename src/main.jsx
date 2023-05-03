@@ -12,6 +12,7 @@ import ChefDetails from "./components/Home/Home/Home/chefDetails/ChefDetails.jsx
 import Errorpage from "./components/ErrorPage/Errorpage.jsx";
 import Blog from "./components/Blog/Blog.jsx";
 import PrivateRoute from "./components/privateRoute/PrivateRoute.jsx";
+import { Toaster } from 'react-hot-toast';
 
 const router = createBrowserRouter([
   {
@@ -47,6 +48,7 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <AuthProvider>
+      <Toaster></Toaster>
       <RouterProvider router={router} />
     </AuthProvider>
   </React.StrictMode>
