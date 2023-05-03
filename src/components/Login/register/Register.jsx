@@ -31,19 +31,20 @@ const Register = () => {
     createUser(email, password)
     .then(result=>{
       const createdUser = result.user 
-      if(createUser){
-        updateProfile(createUser, {
+      console.log(createdUser)
+      if(createdUser){
+        updateProfile(createdUser, {
           displayName:name,
           photoURL: photo
         })
         .then(()=>{
           console.log('profile update')
         })
-        .catch(()=>{
+        .catch((error)=>{
           console.log(error)
         })
       }
-      console.log(createdUser)
+      console.log(createdUser.displayName)
     })
     .catch(error=>{
       console.log(error)
