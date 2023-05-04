@@ -2,48 +2,43 @@ import React, { useContext, useState } from "react";
 import { Form, Link, useLocation, useNavigate } from "react-router-dom";
 import { FaGoogle, FaGithub } from "react-icons/fa";
 import { AuthContext } from "../../providers/AuthProvider";
-import { toast } from "react-hot-toast";
+import { toast, Toaster } from "react-hot-toast";
 
 const Login = () => {
   const { signIn, googleSignIn, githubSignIn } = useContext(AuthContext);
-  // const [error, setError] = useState('')
-  const [emailError, setEmailError] = useState('')
+  const [error, setError] = useState('')
+  // const [emailError, setEmailError] = useState('')
   // const [errorPassword, setErrorPassword] = useState('')
+  
   
   const navigate = useNavigate();
   const location = useLocation()
 
   const from = location.state?.from?.pathname || '/'
+
   const handleLogin = (event) => {
     event.preventDefault();
     const form = event.target;
     const email = form.email.value;
     const password = form.password.value;
-    // console.log(email, password);
-    // console.log(emailError)
-    if(emailError){
-      // setErrorEmail('Email does not match')
-     return toast.error(emailError)
+
+    if(error){
+    return toast.error(error)
     
     }
-    // else if(errorPassword){
-    //   return toast.error('Password does not match')
+
     
-    //  }
-   
-    if(password.length < 6){
-      setErrorPassword('Password should be 6 character')
-    }
     signIn(email, password)
       .then((result) => {
         const loggedUser = result.user;
         console.log(loggedUser)
+        setEmailError("")
         navigate(from, {replace: true});
         form.reset()
       })
       .catch((error) => {
-        setEmailError(error.message)
-        console.log(error.message);
+        setError(error.message)
+        // console.log(error.message);
       });
   };
 
@@ -51,7 +46,7 @@ const Login = () => {
     googleSignIn()
       .then((result) => {
         const user = result.user;
-        setUser(user)
+        navigate(from, {replace: true});
         console.log(user);
       })
       .catch((error) => {
@@ -62,6 +57,7 @@ const Login = () => {
     githubSignIn()
       .then((result) => {
         const user = result.user;
+        navigate(from, {replace: true})
         console.log(user);
       })
       .catch((error) => {
@@ -70,6 +66,7 @@ const Login = () => {
   };
   return (
     <>
+      <Toaster></Toaster>
       <h2 className="text-center mt-16 mb-8 text-4xl">Please Login</h2>
       <Form className="hero mb-20 bg-base-200" onSubmit={handleLogin}>
         <div className="hero-content w-2/4 flex-col lg:flex-row-reverse">
@@ -98,7 +95,7 @@ const Login = () => {
                   className="input input-bordered"
                 />
               </div>
-              {/* <p className="text-red-500">{error}</p> */}
+              
               <div className="form-control mt-6">
                 <button className=" btn hover:border hover:border-purple-900 hover:text-purple-800 bg-purple-600 text-white">
                   Login

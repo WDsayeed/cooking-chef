@@ -4,8 +4,8 @@ import { Rating } from '@smastrom/react-rating'
 import '@smastrom/react-rating/style.css'
 import { Link } from "react-router-dom";
 
-const Recipe = ({ recipe, rating, id }) => {
-  const { name, cookingMethod, ingredients  } = recipe;
+const Recipe = ({ recipe }) => {
+  const { name, cookingMethod, ingredients, rating  } = recipe;
 
   const [isDisable, setDisable] = useState(false)
   const handleFavBtn = ()=>{

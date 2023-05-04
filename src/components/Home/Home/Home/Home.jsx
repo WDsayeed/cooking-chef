@@ -1,9 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
-import Chef from "./chef";
 import headerPhoto from "../../../../assets/head.png";
-import delivaryImg from "../../../../assets/depositphotos_67242135-stock-photo-happy-friends-and-chef-cook.jpg";
+import rev from "../../../../assets/iiistockphoto-901093724-170667a.jpg";
+import rev1 from "../../../../assets/rev2.jpg";
+import rev2 from "../../../../assets/rev.png";
 import aboutImg from "../../../../assets/group-chef-waiters-26749735.jpg";
 import AOS from "aos";
+import Chef from "./Chef";
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 const Home = () => {
   const [loading, setLoading] = useState(true);
@@ -12,6 +16,10 @@ const Home = () => {
   useEffect(() => {
     AOS.init({ duration: 1000 });
   }, []);
+
+  useEffect(()=>{
+    AOS.init({duration: 1000});
+  } ,[])
 
   useEffect(() => {
     fetch("http://localhost:5000/chef")
@@ -37,6 +45,9 @@ const Home = () => {
               and supervising the kitchen <br /> workers, creating the menus for
               the customers..
             </p>
+            <button className=" mt-6 btn hover:border hover:text-purple-800 hover:border-purple-900 bg-purple-600 text-white">
+              EXPLORE NOW
+            </button>
           </div>
           <div className="h-[700px]">
             <img className="h-full rounded" src={headerPhoto} alt="" />
@@ -61,29 +72,70 @@ const Home = () => {
         )}
       </div>
 
-      <div className="md:flex md:container mx-auto my-28 shadow-lg items-center gap-28" data-aos="zoom-in-up">
-        <div className=" md:w-2/5">
-          <img className="w-full rounded-lg" src={delivaryImg} alt="" />
+      
+        <div className="bg-purple-200 md:w-96 mx-auto h-[2px] mb-3 mt-40"></div>
+        <h1 className="font-semibold text-3xl text-center text-gray-700 mb-3">
+          WHAT THEY SAY
+        </h1>
+        <div className="bg-purple-200 md:w-96 mx-auto h-[2px] mb-14"></div>
+
+      {/* review section */}
+      <div className="md:flex md:container justify-around mx-auto gap-10" data-aos="zoom-out">
+        <div className="card  md:w-[650px]  bg-base-100 shadow-xl">
+          <figure>
+            <LazyLoadImage src={rev} alt="Shoes" height={"100%"}
+          width={"100%"} effect="blur" className="h-60 object-cover w-full" />
+          </figure>
+          <div className="card-body">
+            <p className="text-gray-600 text-2xl mb-10 text-center">
+              {" "}
+              "Becoming a cook is our dream since we was little, and here we
+              have found a way to make it open."
+            </p>
+            <div className="card-actions justify-end">
+              <h1 className="text-xl font-medium">Kalam Uddin</h1>
+            </div>
+          </div>
         </div>
-        <div>
-          <div className="bg-purple-200 md:w-96 h-[2px] mb-3"></div>
-
-          <h1 className="font-semibold text-3xl text-gray-700 mb-3">
-            WHAT THEY SAY
-          </h1>
-          <div className="bg-purple-200 md:w-96 h-[2px] mb-6"></div>
-
-          <p className="text-gray-600 text-2xl mb-10">
-            {" "}
-            "Becoming a cook is our dream since we was little, <br /> and here
-            we have found a way to make it open."
-          </p>
-          <h1 className="text-xl text-gray-600">Chefs family</h1>
-          <div className="bg-purple-200 md:w-32 h-[2px]"></div>
+        <div className="card  md:w-[650px] bg-base-100 shadow-xl">
+          <figure>
+            <LazyLoadImage src={rev1} alt="Shoes" height={"100%"}
+          width={"100%"} effect="blur" className="h-60 object-cover w-full" />
+          </figure>
+          <div className="card-body">
+            <p className="text-gray-600 text-2xl mb-10 text-center">
+              I'm blown away by the talent and creativity of the chef behind it.
+              The website is a true feast for the senses.
+            </p>
+            <div className="card-actions justify-end">
+              <h1 className="text-xl font-medium">Jamal Mia</h1>
+            </div>
+          </div>
+        </div>
+        <div className="card  md:w-[650px] bg-base-100 shadow-xl">
+          <figure>
+            <LazyLoadImage src={rev2} alt="Shoes" effect="blur" height={"100%"}
+          width={"100%"} className="h-60 object-cover w-full" />
+          </figure>
+          <div className="card-body">
+            <p className="text-gray-600 text-2xl mb-10 text-center">
+              {" "}
+              I love about the variety of recipes. Whether you're looking for
+              something quick and easy or a more complex dish to impress your
+              dinner guests,
+            </p>
+            <div className="card-actions justify-end">
+              <h1 className="text-xl font-medium">Nasima Khatun</h1>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div className="md:flex md:container mx-auto mb-24 flex-cols-reverse  justify-evenly items-center" data-aos="zoom-in">
+{/* about section */}
+      <div
+        className="md:flex md:container mx-auto mt-44 mb-24 flex-cols-reverse  justify-evenly items-center"
+        data-aos="zoom-in"
+      >
         <div className="p-5">
           <h1 className="text-3xl font-semibold text-gray-700 mb-3">
             ABOUT US
