@@ -28,7 +28,7 @@ const router = createBrowserRouter([
       {
         path:"/details/:id",
         element:<PrivateRoute><ChefDetails></ChefDetails></PrivateRoute>,
-        loader: ({params})=> fetch(`http://localhost:5000/chef/${params.id}`)
+        loader: ({params})=> fetch(`https://cooking-master-server-wdsayeed.vercel.app/chef/${params.id}`)
       },
       {
         path:'blog',
@@ -49,6 +49,7 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <AuthProvider>
+      <Toaster></Toaster>
       <RouterProvider router={router} />
     </AuthProvider>
   </React.StrictMode>

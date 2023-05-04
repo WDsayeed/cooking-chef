@@ -66,7 +66,7 @@ const Login = () => {
   };
   return (
     <>
-      <Toaster></Toaster>
+      
       <h2 className="text-center mt-16 mb-8 text-4xl">Please Login</h2>
       <Form className="hero mb-20 bg-base-200" onSubmit={handleLogin}>
         <div className="hero-content w-2/4 flex-col lg:flex-row-reverse">

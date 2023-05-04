@@ -38,6 +38,7 @@ const Chef = ({ chef }) => {
           loading ? <Loading></Loading> :
           <>View Recipes</>
         }
+        
         </button>
         </Link>
         </div>

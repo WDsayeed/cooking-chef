@@ -22,7 +22,7 @@ const Home = () => {
   } ,[])
 
   useEffect(() => {
-    fetch("http://localhost:5000/chef")
+    fetch("https://cooking-master-server-wdsayeed.vercel.app/chef")
       .then((res) => res.json())
       .then((data) => {
         setChefs(data);
