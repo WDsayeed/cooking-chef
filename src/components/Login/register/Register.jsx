@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import { Form, Link } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { Form, Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import { FaGoogle, FaGithub } from "react-icons/fa";
 import { getAuth, updateProfile } from "firebase/auth";
@@ -7,18 +7,23 @@ import app from "../../../firebase/firebase.config";
 
 const auth = getAuth(app)
 const Register = () => {
-  const {createUser,googleSignIn} = useContext(AuthContext)
+  const {createUser} = useContext(AuthContext)
+  const [errorPassword, setErrorPassword] = useState('')
+  const navigate = useNavigate()
+  const location = useLocation()
+  const from = location.state?.from?.pathname || '/login'
 
-  const handleGoogleSignIn = () => {
-    googleSignIn()
-      .then((result) => {
-        const user = result.user;
-        console.log(user);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+
+  // const handleGoogleSignIn = () => {
+  //   googleSignIn()
+  //     .then((result) => {
+  //       const user = result.user;
+  //       console.log(user);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // };
 
   const handleRegister = event=>{
     event.preventDefault()
@@ -27,7 +32,12 @@ const Register = () => {
     const email = form.email.value 
     const photo = form.photo.value
     const password = form.password.value 
-    console.log(name, email, password, photo)
+
+    if(password.length < 6){
+      setErrorPassword('Password should be 6 character')
+      return
+    }
+
     createUser(email, password)
     .then(result=>{
       const createdUser = result.user 
@@ -44,23 +54,24 @@ const Register = () => {
           console.log(error)
         })
       }
-      console.log(createdUser.displayName)
+      navigate(from, {replace: true});
+      form.reset()
     })
     .catch(error=>{
       console.log(error)
     })
   }
 
-  const handleGithubSignIn = () => {
-    githubSignIn()
-      .then((result) => {
-        const user = result.user;
-        console.log(user);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+  // const handleGithubSignIn = () => {
+  //   githubSignIn()
+  //     .then((result) => {
+  //       const user = result.user;
+  //       console.log(user);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // };
   return (
     <>
       <h2 className="text-center mt-16 mb-8 text-4xl">Please Register</h2>
@@ -101,7 +112,7 @@ const Register = () => {
                   placeholder="url"
                   name="photo"
                   className="input input-bordered"
-                  
+                  required
                 />
               </div>
               <div className="form-control">
@@ -116,10 +127,11 @@ const Register = () => {
                   required
                 /> 
               </div>
+              <p className="text-red-700">{errorPassword}</p>
               <div className="form-control mt-6">
-                <button className=" h-12 rounded text-white bg-purple-600">Register</button>
+                <button className=" btn hover:border hover:border-purple-900 hover:text-purple-800 bg-purple-600 text-white">Register</button>
               </div>
-              <div className="form-control mt-3">
+              {/* <div className="form-control mt-3">
                 <button
                   onClick={handleGoogleSignIn}
                   className="flex items-center justify-center gap-3 h-12 rounded text-white bg-purple-600"
@@ -131,12 +143,12 @@ const Register = () => {
               <div className="form-control mt-3">
                 <button
                   onClick={handleGithubSignIn}
-                  className="flex items-center justify-center gap-3 h-12 rounded text-white bg-purple-600"
+                  className="flex items-center justify-center gap-3 btn hover:border hover:border-purple-900 hover:text-purple-800 bg-purple-600 text-white"
                 >
                   <FaGithub className="h-7 w-5"></FaGithub>
                   GitHub Sign-in
                 </button>
-              </div>
+              </div> */}
               <p>
                 Already have an account?{" "}
                 <Link to="/login" className="text-purple-600 underline">

@@ -5,18 +5,8 @@ import Recipe from "../recipe/Recipe";
 const ChefDetails = () => {
   const details = useLoaderData();
   const recipes = details.recipes;
-  const { bio, name, img_url, experience, num_recipes, likes, rating} = details;
-  // const {id} = useParams()
-  // console.log(id)
-  // const [details, setDetails] = useState([])
-  // useEffect( ()=>{
-  //         fetch(`http://localhost:5000/chef`)
-  //         .then(res=> res.json())
-  //         .then(data=> setDetails(data))
-  // },[])
+  const {id, bio, name, img_url, experience, num_recipes, likes, rating} = details;
 
-  // const filterData = details.find(dt=> dt.id == id)
-  // console.log(filterData)
   return (
     <>
     <div className="card lg:card-side bg-base-100 shadow-xl w-3/4 mx-auto my-24">
@@ -35,16 +25,17 @@ const ChefDetails = () => {
         <p className="my-3 h-0"><span className="font-medium">Bio:</span> {bio}</p>
       </div>
     </div>
-    <h1 className="text-4xl font-semibold text-center mt-10 mb-2">
-        Our Chef's Recipes
+    <h1 className="text-4xl font-semibold text-center mt-10 mb-8">
+        Our <span className="text-purple-700">Chef's</span> Recipes
       </h1>
-      <div className="bg-purple-700 w-96 h-[2px] mx-auto mb-12"></div>
+      {/* <div className="bg-black w-96 h-[2px] mx-auto mb-12"></div> */}
    <div className="grid md:grid-cols-3 gap-20 mx-auto md:container">
     
    {
       recipes.map(recipe=> <Recipe
       recipe={recipe}
       rating={rating}
+      id={id}
       ></Recipe>)
     }
    </div>

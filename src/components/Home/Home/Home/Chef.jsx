@@ -1,14 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Loading from "../../../shared/Loading/Loading";
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
+import AOS from 'aos';
 
 const Chef = ({ chef }) => {
   const { id, name, img_url, experience, num_recipes, likes} = chef;
   const [loading, setLoading] = useState(false)
+
+  useEffect(()=>{
+    AOS.init({duration: 1000});
+  } ,[])
   return (
-    <div className="card  bg-base-100 shadow-xl">
+    <div className="card  bg-base-100 shadow-xl" data-aos="fade-up">
       <figure>
         
         
@@ -28,7 +33,7 @@ const Chef = ({ chef }) => {
         <p>Likes: {likes}</p>
         <div className="card-actions justify-end">
         <Link to={`/details/${id}`}>
-        <button onClick={() => setLoading(true)} className="px-5 h-12 rounded text-white bg-purple-600">
+        <button onClick={() => setLoading(true)} className="btn hover:border hover:border-purple-900 hover:text-purple-800 bg-purple-600 text-white">
         {
           loading ? <Loading></Loading> :
           <>View Recipes</>

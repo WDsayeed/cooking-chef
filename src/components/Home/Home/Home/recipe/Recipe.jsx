@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import { toast } from "react-hot-toast";
 import { Rating } from '@smastrom/react-rating'
 import '@smastrom/react-rating/style.css'
+import { Link } from "react-router-dom";
 
-const Recipe = ({ recipe, rating }) => {
-  const { name, cookingMethod, ingredients } = recipe;
+const Recipe = ({ recipe, rating, id }) => {
+  const { name, cookingMethod, ingredients  } = recipe;
 
   const [isDisable, setDisable] = useState(false)
   const handleFavBtn = ()=>{
@@ -14,7 +15,9 @@ const Recipe = ({ recipe, rating }) => {
   return (    
       <div className="card bg-base-100 mb-10 shadow-xl">
         <div className="card-body">
-          <h2 className="card-title">{name}</h2>
+          <h2 className="card-title text-center">{name}</h2>
+      <div className="bg-purple-700 md:w-96 h-[2px] mx-auto mb-5"></div>
+
           <div>
             <h3 className="text-xl font-medium">Ingredients:</h3>
             {ingredients.map((ing) => (
@@ -22,17 +25,17 @@ const Recipe = ({ recipe, rating }) => {
             ))}
           </div>
           <p>
-            <span className="text-xl font-medium">Cooking method:</span>
+            <span className="text-xl font-medium">Cooking method: </span>
             {cookingMethod}
           </p>
 
          <div>
           <div className="flex items-center flex-grow-1">
-          <Rating style={{ maxWidth: 150 }} value={rating} readOnly/>
+          <Rating style={{ maxWidth: 150 }} value={Math.round(rating)} readOnly/>
           <span>{rating}</span>
           </div>
           <div className="card-actions justify-end">
-            <button onClick={handleFavBtn} disabled={isDisable}  className="px-5 h-12 rounded text-white bg-purple-600">
+            <button onClick={handleFavBtn} disabled={isDisable}  className="btn hover:border hover:border-purple-900 hover:text-purple-800 bg-purple-600 text-white">
               Add to favorite
             </button>
           </div>

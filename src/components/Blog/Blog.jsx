@@ -6,10 +6,10 @@ const Blog = () => {
     <div>
     <ReactToPdf targetRef={ref} filename="blog.pdf">
         {({toPdf}) => (
-            <button onClick={toPdf}>Generate pdf</button>
+            <button className='btn hover:border hover:border-purple-900 hover:text-purple-800 bg-purple-600 text-white flex absolute left-[50%] top-24 text-center ' onClick={toPdf}>Generate pdf</button>
         )}
     </ReactToPdf>
-    <div className="container mx-auto my-11"  ref={ref}>
+    <div className="container mx-auto mb-11 mt-32"  ref={ref}>
     
       <div className="mb-4">
         <h1 className="text-xl font-semibold mb-2">
@@ -18,8 +18,8 @@ const Blog = () => {
         <p>
           {" "}
           <span className="font-semibold">Answer:</span> Controlled components
-          refer to components that have their state and behavior controlled by
-          the parent component. These components rely on props passed down from
+          mention to components that have their state and ways controlled by
+          the parent component. These components depend on props passed down from
           the parent component to update their state and behavior. Uncontrolled
           components refer to components that manage their own state internally.
         </p>

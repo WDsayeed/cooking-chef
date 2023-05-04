@@ -13,6 +13,7 @@ import Errorpage from "./components/ErrorPage/Errorpage.jsx";
 import Blog from "./components/Blog/Blog.jsx";
 import PrivateRoute from "./components/privateRoute/PrivateRoute.jsx";
 import { Toaster } from 'react-hot-toast';
+import 'aos/dist/aos.css';
 
 const router = createBrowserRouter([
   {
