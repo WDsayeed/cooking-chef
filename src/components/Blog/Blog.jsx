@@ -13,36 +13,33 @@ const Blog = () => {
     
       <div className="mb-4">
         <h1 className="text-xl font-semibold mb-2">
-          1. Differences between uncontrolled and controlled components
+          1. Differences between uncontrolled and controlled components.
         </h1>
         <p>
           {" "}
           <span className="font-semibold">Answer:</span> Controlled components
           mention to components that have their state and ways controlled by
-          the parent component. These components depend on props passed down from
-          the parent component to update their state and behavior. Uncontrolled
-          components refer to components that manage their own state internally.
+          the parent component. Uncontrolled components directly access and modify the DOM without using React's state management tools, while controlled components are managed by React's state . Controlled components are updated by React and re-render themselves based on changes to their state, while uncontrolled components do not. Uncontrolled
+          components refer to components that manage their own state inwardly.
         </p>
       </div>
       <div className="mb-4">
         <h1 className="text-xl font-semibold mb-2">
-          2. How to validate React props using PropTypes
+          2. How to validate React props using PropTypes?
         </h1>
         <p>
           {" "}
           <span className="font-semibold">Answer:</span> Props are an important
           mechanism for passing the read-only attributes to React components.
+          When a prop is passed to  component, PropTypes will validate its type and issue a warning in the console if it doesn't match the expected type or if it's missing.
           The props are usually required to use correctly in the component. If
           it is not used correctly, the components may not behave as expected.
           Hence, it is required to use props validation in improving react
           components.Props validation is a tool that will help the developers to
           avoid future bugs and problems. It is a useful way to force the
-          correct usage of your components. It makes your code more readable.
-          React components used special property PropTypes that help you to
-          catch bugs by validating data types of values passed through props,
-          although it is not necessary to define components with propTypes.
-          However, if you use propTypes with your components, it helps you to
-          avoid unexpected bugs.
+          correct usage of the components. 
+          However, if you use propTypes with components, it helps to
+          avoid unexpected bugs.Using PropTypes can help to catch bugs and ensure that the components receive the correct types of props.
         </p>
       </div>
       <div className="mb-4">
@@ -52,11 +49,9 @@ const Blog = () => {
         <p>
           {" "}
           <span className="font-semibold">Answer:</span> Express is a minimal
-          and flexible node. js web application framework, providing a robust
+          and flexible.  node.js web application framework, providing a robust
           set of features for building single and multi-page, and hybrid web
-          applications. On the other hand, Node. js is detailed as "A platform
-          built on Chrome's JavaScript runtime for easily building fast,
-          scalable network applications".
+          applications.Node.js is a JavaScript runtime environment, while Express.js is a web application framework built on top of Node.js. Node.js provides the underlying platform for building network applications, while Express.js provides a set of tools and features to make building web applications easier and more efficient.
         </p>
       </div>
       <div className="mb-4">
@@ -65,9 +60,7 @@ const Blog = () => {
         </h1>
         <p>
           {" "}
-          <span className="font-semibold">Answer:</span> Custom React JS hooks
-          are reusable functions that a React JS software developer can use to
-          add special and unique functionality to the React applications.
+          <span className="font-semibold">Answer:</span> A custom hook is a JavaScript function in React that uses React's built-in hooks to provide reusable logic and stateful behavior across multiple components. Custom hooks allow developers to extract and reuse complex logic that can be shared among multiple components.
           Usually, if there is a requirement to add a feature, one can install a
           third-party library and solve the problem.
         </p>
