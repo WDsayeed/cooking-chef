@@ -11,8 +11,7 @@ const Register = () => {
   const [errorPassword, setErrorPassword] = useState('')
   const navigate = useNavigate()
   const location = useLocation()
-  const from = location.state?.from?.pathname || '/login'
-
+  
 
   const handleRegister = event=>{
     event.preventDefault()
@@ -45,7 +44,7 @@ const Register = () => {
           console.log(error)
         })
       }
-      navigate(from, {replace: true});
+      navigate("/login");
       form.reset()
     })
     .catch(error=>{

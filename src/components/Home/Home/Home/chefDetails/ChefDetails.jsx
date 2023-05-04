@@ -35,7 +35,7 @@ const ChefDetails = () => {
       <h1 className="text-4xl font-semibold text-center mt-10 mb-8">
         Our <span className="text-purple-700">Chef's</span> Recipes
       </h1>
-      {/* <div className="bg-black w-96 h-[2px] mx-auto mb-12"></div> */}
+     
       <div className="grid md:grid-cols-3 gap-20 mx-auto md:container">
         {recipes.map((recipe, idx) => (
           <Recipe recipe={recipe} key={idx}></Recipe>

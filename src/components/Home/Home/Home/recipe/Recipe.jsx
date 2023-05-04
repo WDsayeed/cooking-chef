@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { toast } from "react-hot-toast";
 import { Rating } from '@smastrom/react-rating'
 import '@smastrom/react-rating/style.css'
-import { Link } from "react-router-dom";
+
 
 const Recipe = ({ recipe }) => {
   const { name, cookingMethod, ingredients, rating  } = recipe;

@@ -2,14 +2,12 @@ import React, { useContext, useState } from "react";
 import { Form, Link, useLocation, useNavigate } from "react-router-dom";
 import { FaGoogle, FaGithub } from "react-icons/fa";
 import { AuthContext } from "../../providers/AuthProvider";
-import { toast, Toaster } from "react-hot-toast";
+import { toast } from "react-hot-toast";
 
 const Login = () => {
   const { signIn, googleSignIn, githubSignIn } = useContext(AuthContext);
   const [error, setError] = useState('')
-  // const [emailError, setEmailError] = useState('')
-  // const [errorPassword, setErrorPassword] = useState('')
-  
+ 
   
   const navigate = useNavigate();
   const location = useLocation()
@@ -38,7 +36,7 @@ const Login = () => {
       })
       .catch((error) => {
         setError(error.message)
-        // console.log(error.message);
+        
       });
   };
 
@@ -83,7 +81,7 @@ const Login = () => {
                   className="input input-bordered"
                 />
               </div>
-              {/* <p className="text-red-600">{errorEmail}</p> */}
+              
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Password</span>
