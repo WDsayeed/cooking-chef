@@ -1,6 +1,5 @@
 
 import { FaceFrownIcon } from '@heroicons/react/24/solid'
-import { FaGoogle, FaGithub } from "react-icons/fa";
 import React from 'react'
 import { Link, useRouteError } from 'react-router-dom'
 
