@@ -32,7 +32,7 @@ const Login = () => {
       .then((result) => {
         const loggedUser = result.user;
         console.log(loggedUser)
-        setEmailError("")
+        
         navigate(from, {replace: true});
         form.reset()
       })
