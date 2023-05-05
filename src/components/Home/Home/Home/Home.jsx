@@ -50,7 +50,9 @@ const Home = () => {
             </button>
           </div>
           <div className="h-[700px]">
-            <img className="h-full rounded" src={headerPhoto} alt="" />
+          <LazyLoadImage src={headerPhoto} alt="Shoes" height={"100%"}
+          width={"100%"} effect="blur" className="h-full object-cover w-full" />
+            {/* <img className="h-full rounded" src={headerPhoto} alt="" /> */}
           </div>
         </div>
       </div>
@@ -80,7 +82,7 @@ const Home = () => {
         <div className="bg-purple-200 md:w-96 mx-auto h-[2px] mb-14"></div>
 
       {/* review section */}
-      <div className="md:flex md:container justify-around mx-auto gap-10" data-aos="zoom-out">
+      <div className="md:flex md:container justify-around mx-auto gap-10" data-aos="zoom-in">
         <div className="card  md:w-[650px]  bg-base-100 shadow-xl">
           <figure>
             <LazyLoadImage src={rev} alt="Shoes" height={"100%"}
@@ -151,7 +153,9 @@ const Home = () => {
           </p>
         </div>
         <div className="md:w-[30%] text-end">
-          <img className="w-full rounded" src={aboutImg} alt="" />
+          {/* <img className="w-full rounded" src={aboutImg} alt="" /> */}
+          <LazyLoadImage src={aboutImg} alt="Shoes" height={"100%"}
+          width={"100%"} effect="blur" className=" object-cover w-full" />
         </div>
       </div>
     </>

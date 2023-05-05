@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useLoaderData, useParams } from "react-router-dom";
 import Recipe from "../recipe/Recipe";
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 const ChefDetails = () => {
   
@@ -13,7 +15,9 @@ const ChefDetails = () => {
     <>
       <div className="card lg:card-side bg-base-100 shadow-xl w-3/4 mx-auto my-24">
         <figure>
-          <img className="w-80 object-cover" src={img_url} alt="" />
+          {/* <img className="w-80 object-cover" src={img_url} alt="" /> */}
+          <LazyLoadImage src={img_url} alt="" height={"100%"}
+          width={"100%"} effect="blur" className="h-full object-cover w-80" />
         </figure>
         <div className="card-body">
           <h2 className="card-title">{name}</h2>

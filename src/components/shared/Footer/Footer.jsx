@@ -8,6 +8,7 @@ const Footer = () => {
       <div>
         <div className="flex items-center gap-3">
         <img className="w-20 rounded-xl h-14" src={logo} alt="" />
+        
         <h2 className="text-xl">Cooking<span className="text-purple-700">Master</span></h2>
         </div>
         <p className="p-3">

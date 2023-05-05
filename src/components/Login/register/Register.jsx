@@ -7,7 +7,7 @@ import app from "../../../firebase/firebase.config";
 
 const auth = getAuth(app)
 const Register = () => {
-  const {createUser} = useContext(AuthContext)
+  const {createUser, logOut, updateUser} = useContext(AuthContext)
   const [errorPassword, setErrorPassword] = useState('')
   const navigate = useNavigate()
   const location = useLocation()
@@ -25,32 +25,46 @@ const Register = () => {
       setErrorPassword('Password should be at least 6 characters')
       return
     }
-
+    
     createUser(email, password)
     .then(result=>{
-      const createdUser = result.user 
+    
+      const createdUser = result.user
+      createdUser.photoURL = photo,
+      createUser.displayName = name  
       setErrorPassword("")
       form.reset()
       console.log(createdUser)
-      if(createdUser){
-        updateProfile(createdUser, {
-          displayName:name,
-          photoURL: photo
-        })
+      // if(createdUser){
+      //   updateProfile(createdUser, {
+      //     displayName:name,
+      //     photoURL: photo
+      //   })
+      //   .then(()=>{
+      //     console.log('profile update')
+      //   })
+      //   .catch((error)=>{
+      //     console.log(error)
+      //   })
+      // }
+      const userInfo ={
+        displayName: name,
+        photoURL: photo
+        }
+        updateUser(userInfo)
         .then(()=>{
-          console.log('profile update')
+          console.log('profile updated')
         })
-        .catch((error)=>{
-          console.log(error)
-        })
-      }
-      navigate("/login");
+
+      navigate("/");
       form.reset()
     })
     .catch(error=>{
       console.log(error.message)
     })
   }
+
+
   return (
     <>
       <h2 className="text-center mt-16 mb-8 text-4xl">Please Register</h2>
