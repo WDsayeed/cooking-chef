@@ -7,7 +7,7 @@ import app from "../../../firebase/firebase.config";
 
 const auth = getAuth(app)
 const Register = () => {
-  const {createUser, logOut, updateUser} = useContext(AuthContext)
+  const {createUser, googleSignIn,githubSignIn ,updateUser} = useContext(AuthContext)
   const [errorPassword, setErrorPassword] = useState('')
   const navigate = useNavigate()
   const location = useLocation()
@@ -35,18 +35,7 @@ const Register = () => {
       setErrorPassword("")
       form.reset()
       console.log(createdUser)
-      // if(createdUser){
-      //   updateProfile(createdUser, {
-      //     displayName:name,
-      //     photoURL: photo
-      //   })
-      //   .then(()=>{
-      //     console.log('profile update')
-      //   })
-      //   .catch((error)=>{
-      //     console.log(error)
-      //   })
-      // }
+   
       const userInfo ={
         displayName: name,
         photoURL: photo
@@ -64,7 +53,29 @@ const Register = () => {
     })
   }
 
+  const handleGoogleSignIn = () => {
+    googleSignIn()
+      .then((result) => {
+        const user = result.user;
+        navigate(from, {replace: true});
+        console.log(user);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
+  const handleGithubSignIn = () => {
+    githubSignIn()
+      .then((result) => {
+        const user = result.user;
+        navigate(from, {replace: true})
+        console.log(user);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   return (
     <>
       <h2 className="text-center mt-16 mb-8 text-4xl">Please Register</h2>
@@ -123,6 +134,25 @@ const Register = () => {
               <p className="text-red-700">{errorPassword}</p>
               <div className="form-control mt-6">
                 <button className=" btn hover:border hover:border-purple-900 hover:text-purple-800 bg-purple-600 text-white">Register</button>
+              </div>
+
+              <div className="form-control mt-3">
+                <button
+                  onClick={handleGoogleSignIn}
+                  className="flex items-center justify-center gap-3 btn hover:border hover:border-purple-900 hover:text-purple-800 bg-purple-600 text-white"
+                >
+                  <FaGoogle className="h-7 w-5"></FaGoogle>
+                  Google Sign-in
+                </button>
+              </div>
+              <div className="form-control mt-3">
+                <button
+                  onClick={handleGithubSignIn}
+                  className="flex items-center justify-center gap-3 btn hover:border hover:border-purple-900 hover:text-purple-800 bg-purple-600 text-white"
+                >
+                  <FaGithub className="h-7 w-5"></FaGithub>
+                  GitHub Sign-in
+                </button>
               </div>
               <p>
                 Already have an account?{" "}
