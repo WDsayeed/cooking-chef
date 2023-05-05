@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import headerPhoto from "../../../../assets/head.png";
-import rev from "../../../../assets/iiistockphoto-901093724-170667a.jpg";
-import rev1 from "../../../../assets/rev2.jpg";
-import rev2 from "../../../../assets/rev.png";
+import rev from "../../../../assets/reviewb.jpg";
+import rev1 from "../../../../assets/reviewm.jpg";
+import rev2 from "../../../../assets/review.png";
 import aboutImg from "../../../../assets/group-chef-waiters-26749735.jpg";
 import AOS from "aos";
 import Chef from "./Chef";
