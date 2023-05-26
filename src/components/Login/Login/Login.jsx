@@ -30,6 +30,7 @@ const Login = () => {
       .then((result) => {
         const loggedUser = result.user;
         console.log(loggedUser)
+        console.log(loggedUser)
         
         navigate(from, {replace: true});
         form.reset()
@@ -39,7 +40,7 @@ const Login = () => {
         
       });
   };
-
+// new add
   const handleGoogleSignIn = () => {
     googleSignIn()
       .then((result) => {
